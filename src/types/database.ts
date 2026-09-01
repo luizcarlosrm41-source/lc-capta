@@ -28,12 +28,18 @@ export interface Database {
         Row: ProfileRow;
         Insert: Partial<ProfileRow> & { id: string; full_name: string };
         Update: Partial<ProfileRow>;
+        Relationships: [];
       };
       user_roles: {
         Row: UserRoleRow;
         Insert: UserRoleRow;
         Update: Partial<UserRoleRow>;
+        Relationships: [];
       };
     };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
+    Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
   };
 }
