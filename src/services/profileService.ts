@@ -6,7 +6,7 @@ export async function getMyProfile(userId: string): Promise<ProfileRow | null> {
     .from('profiles')
     .select('*')
     .eq('id', userId)
-    .single();
+    .single<ProfileRow>();
 
   // RLS garante que só é possível buscar o próprio perfil (colaborador) ou
   // qualquer perfil (admin) — ver política em Etapa 3.
@@ -22,7 +22,7 @@ export async function getMyRole(userId: string): Promise<UserRole> {
     .from('user_roles')
     .select('role')
     .eq('user_id', userId)
-    .single();
+    .single<{ role: UserRole }>();
 
   if (error) {
     // Sem registro em user_roles => trata como colaborador (perfil padrão).
